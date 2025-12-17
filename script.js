@@ -690,6 +690,17 @@ function renderUserView() {
         list.appendChild(card);
     });
 }
+// TIÊU CHÍ TÌM KIẾM (theo tên, hãng)
+function matchSearch(product, keyword) {
+    const key = keyword.toLowerCase();
+
+    const matchName = product.name.toLowerCase().includes(key);
+    const matchBrand = product.brand.toLowerCase().includes(key);
+    const matchPrice = product.price.toString().includes(key);
+
+    return matchName || matchBrand || matchPrice;
+}
+
 // XÁC ĐỊNH HÃNG TỪ TRANG
 function getBrandFromPage() {
     const path = window.location.pathname.toLowerCase();
