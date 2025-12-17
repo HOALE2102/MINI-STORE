@@ -13,8 +13,8 @@ const PRODUCT_DATA = {
             id: 1,
             name: "iPhone 16e 128GB",
             price: 14900000,
-            image: "ẢNH IPHONE/1.jpg",
-            detailImage: "ẢNH IPHONE/ct1.jpg",
+            image: "ẢNH IPHONE coppy/1.jpg",
+            detailImage: "ẢNH IPHONE coppy/ct1.jpg",
             status: "Còn hàng",
             description: 
             [
@@ -30,8 +30,8 @@ const PRODUCT_DATA = {
             id: 2,
             name: "iPhone 13 128GB",
             price: 12490000,
-            image: "ẢNH IPHONE/2.jpg",
-            detailImage: "ẢNH IPHONE/ct2.jpg",
+            image: "ẢNH IPHONE coppy/2.jpg",
+            detailImage: "ẢNH IPHONE coppy/ct2.jpg",
             status: "Còn hàng",
             description: [
                 "Chip Apple A15 Bionic",
@@ -46,8 +46,8 @@ const PRODUCT_DATA = {
             id: 3,
             name: "iPhone 17 256GB",
             price: 24990000,
-            image: "ẢNH IPHONE/3.jpg",
-            detailImage: "ẢNH IPHONE/ct3.jpg",
+            image: "ẢNH IPHONE coppy/3.jpg",
+            detailImage: "ẢNH IPHONE coppy/ct3.jpg",
             status: "Còn hàng",
             description: [
                 "Chip Apple A19 6 nhân",
@@ -62,7 +62,7 @@ const PRODUCT_DATA = {
             id: 4,
             name: "iPhone 16 Plus 128GB",
             price: 25090000,
-            image: "ẢNH IPHONE/4.jpg",
+            image: "ẢNH IPHONE coppy/4.jpg",
             status: "Còn hàng",
             description: [
                 "Chip Apple A18 6 nhân",
@@ -77,8 +77,8 @@ const PRODUCT_DATA = {
             id: 5,
             name: "iPhone 14 128GB",
             price: 13990000,
-            image: "ẢNH IPHONE/5.jpg",
-            detailImage: "ẢNH IPHONE/ct5.jpg",
+            image: "ẢNH IPHONE coppy/5.jpg",
+            detailImage: "ẢNH IPHONE coppy/ct5.jpg",
             status: "Còn hàng",
             description: [
                 "Chip Apple A15 Bionic",
@@ -93,8 +93,8 @@ const PRODUCT_DATA = {
             id: 6,
             name: "iPhone 17 Pro Max 256GB",
             price: 37990000,
-            image: "ẢNH IPHONE/6.jpg",
-            detailImage: "ẢNH IPHONE/ct6.jpg",
+            image: "ẢNH IPHONE coppy/6.jpg",
+            detailImage: "ẢNH IPHONE coppy/ct6.jpg",
             status: "Còn hàng",     
             description: [
                 "Chip Apple A19 Pro 6 nhân",
@@ -156,7 +156,7 @@ const PRODUCT_DATA = {
             id: 10,
             name: "iPhone 16 Pro Max 256GB",
             price: 31290000,
-            image: "ẢNH IPHONE/10.jpg",
+            image: "ẢNH IPHONE coppy/10.jpg",
             status: "Còn hàng",
             description: [
                 "Chip Apple A18 Pro 6 nhân",
