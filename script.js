@@ -701,3 +701,17 @@ function getBrandFromPage() {
 
     return null; 
 }
+// KHỞI TẠO TRANG//
+document.addEventListener("DOMContentLoaded", () => {
+    const brand = getBrandFromPage();
+
+    if (brand) {
+        filteredProducts = allProducts.filter(p => p.brand === brand);
+        const title = document.getElementById("currentCategoryTitle");
+        if (title) title.innerText = brand;
+    } else {
+        filteredProducts = [...allProducts];
+    }
+
+    renderUserView();
+});
