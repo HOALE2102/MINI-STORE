@@ -46,6 +46,24 @@ header {
     align-items: center; 
     gap: 10px; 
 }
+.search-box { 
+    flex: 1; 
+    max-width: 500px; 
+    margin: 0 20px; 
+    position: relative; 
+}
+.search-box input {
+    width: 100%; 
+    padding: 10px 15px; 
+    border-radius: 5px; 
+    border: none; 
+    outline: none;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
 .nav-links button {
     background: rgba(255,255,255,0.2); 
     border: none; 
