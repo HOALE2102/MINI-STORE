@@ -723,6 +723,29 @@ function getBrandFromPage() {
 
     return null; 
 }
+//  CHI TIẾT SẢN PHẨM
+function showDetail(p) {
+    currentProductDetail = p;
+
+    // Ẩn các section khác
+    document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+    document.getElementById("detail-view").classList.add("active");
+
+    // Đổ dữ liệu cơ bản
+    document.getElementById("detailImage").src = p.detailImage || p.image;
+    document.getElementById("detailName").innerText = p.name;
+    document.getElementById("detailBrand").innerText = p.brand;
+    document.getElementById("detailPrice").innerText = formatMoney(p.price);
+
+    // 🔴 QUAN TRỌNG: hiển thị đặc điểm nổi bật (mỗi dòng 1 <li>)
+    const ul = document.getElementById("detailDesc");
+    ul.innerHTML = "";
+    p.description.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        ul.appendChild(li);
+    });
+}
 // KHỞI TẠO TRANG//
 document.addEventListener("DOMContentLoaded", () => {
     const brand = getBrandFromPage();
