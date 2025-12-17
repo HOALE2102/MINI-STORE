@@ -672,7 +672,10 @@ function renderUserView() {
     if (!list) return;
 
     list.innerHTML = "";
-    
+    if (filteredProducts.length === 0) {
+        list.innerHTML = "<p>Không tìm thấy sản phẩm phù hợp.</p>";
+        return;
+    }
     filteredProducts.forEach(p => {
         const card = document.createElement("div");
         card.className = "product-card";
