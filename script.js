@@ -666,3 +666,26 @@ const allProducts = Object.keys(PRODUCT_DATA).flatMap(brand =>
     }))
 );
 let filteredProducts = [...allProducts];
+function renderUserView() {
+    const list = document.getElementById("userProductList");
+    if (!list) return;
+
+    list.innerHTML = "";
+    
+    filteredProducts.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        //card.onclick = () => showDetail(p);
+
+        card.innerHTML = `
+            <div class="card-img-wrapper">
+                <img src="${p.image}" class="card-img">
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">${p.name}</h3>
+                <div class="card-price">${formatMoney(p.price)}</div>
+            </div>
+        `;
+        list.appendChild(card);
+    });
+}
