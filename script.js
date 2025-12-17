@@ -757,6 +757,10 @@ if (Array.isArray(p.description)) {
      ul.innerHTML = `<p>${p.description}</p>`;
 }
 }
+function goBack() {
+    document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+    document.getElementById("user-view")?.classList.add("active");
+}
 // KHỞI TẠO TRANG//
 document.addEventListener("DOMContentLoaded", () => {
     const brand = getBrandFromPage();
