@@ -18,3 +18,44 @@
                 <i class="fas fa-mobile-alt"></i>
                 <span>MiniStore</span>
             </div>
+            <div class="nav-links">
+                <button onclick="window.location.href='index.html'">
+                    <i class="fas fa-home"></i>
+                    <span>Trang chủ</span>
+                </button>
+
+                <button class="has-dropdown">
+                    <i class="fas fa-bars"></i>
+                    <span>Danh mục</span>
+                    <ul class="dropdown-menu">
+                        <li><a href="apple.html">Apple</a></li>
+                        <li><a href="samsung.html">Samsung</a></li>
+                        <li><a href="oppo.html">Oppo</a></li>
+                        <li><a href="vivo.html">Vivo</a></li>
+                    </ul>
+                </button>
+
+                <button>
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Giỏ hàng</span>
+                    <span class="cart-badge">0</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <section id="user-view" class="section active">
+        <h2 class="section-title">
+            <span id="currentCategoryTitle">Samsung</span>
+        </h2>
+
+        <div class="product-grid" id="userProductList"></div>
+    </section>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>            
