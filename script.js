@@ -745,6 +745,17 @@ function showDetail(p) {
         li.textContent = item;
         ul.appendChild(li);
     });
+    //Hiển thị danh sách đặc điểm nổi bật//
+if (Array.isArray(p.description)) { 
+    p.description.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        ul.appendChild(li); // Thêm mỗi đặc điểm vào thành một mục <li>
+    });
+} else {
+     // Nếu không phải là mảng, hiển thị như đoạn văn
+     ul.innerHTML = `<p>${p.description}</p>`;
+}
 }
 // KHỞI TẠO TRANG//
 document.addEventListener("DOMContentLoaded", () => {
