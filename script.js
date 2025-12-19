@@ -700,7 +700,15 @@ function matchSearch(product, keyword) {
 
     return matchName || matchBrand || matchPrice;
 }
-
+// LOGIC TÌM KIẾM SẢN PHẨM
+function handleSearch(keyword) {
+    if (!keyword || keyword.trim() === "") {
+        filteredProducts = [...allProducts];
+    } else {
+        filteredProducts = allProducts.filter(p => matchSearch(p, keyword));
+    }
+    renderUserView();
+}
 // XÁC ĐỊNH HÃNG TỪ TRANG
 function getBrandFromPage() {
     const path = window.location.pathname.toLowerCase();
