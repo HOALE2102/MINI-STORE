@@ -109,8 +109,8 @@ const PRODUCT_DATA = {
             id: 7,
             name: "iPhone 15 128GB",
             price: 17290000,
-            image: "ẢNH IPHONE/7.jpg",
-            detailImage: "ẢNH IPHONE/ct7.jpg",
+            image: "ẢNH IPHONE coppy/7.jpg",
+            detailImage: "ẢNH IPHONE coppy/ct7.jpg",
             status: "Còn hàng",
             description: [
                 "Chip Apple A16 Bionic",
@@ -125,7 +125,7 @@ const PRODUCT_DATA = {
             id: 8,
             name: "iPhone 16 128GB",
             price: 21290000,
-            image: "ẢNH IPHONE/8.jpg",
+            image: "ẢNH IPHONE coppy/8.jpg",
             status: "Còn hàng",
             description: [
                 "Chip Apple A18 6 nhân",
@@ -140,8 +140,8 @@ const PRODUCT_DATA = {
             id: 9,
             name: "iPhone 17 Pro 256GB",
             price: 34690000,
-            image: "ẢNH IPHONE/9.jpg",
-            detailImage: "ẢNH IPHONE/ct9.jpg",
+            image: "ẢNH IPHONE coppy/9.jpg",
+            detailImage: "ẢNH IPHONE coppy/ct9.jpg",
             status: "Còn hàng",
             description: [
                 "Chip Apple A19 Pro 6 nhân",
@@ -722,6 +722,29 @@ function getBrandFromPage() {
     if (path.includes("vivo")) return "Vivo";
 
     return null; 
+}
+//  CHI TIẾT SẢN PHẨM
+function showDetail(p) {
+    currentProductDetail = p;
+
+    // Ẩn các section khác
+    document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+    document.getElementById("detail-view").classList.add("active");
+
+    // Đổ dữ liệu cơ bản
+    document.getElementById("detailImage").src = p.detailImage || p.image;
+    document.getElementById("detailName").innerText = p.name;
+    document.getElementById("detailBrand").innerText = p.brand;
+    document.getElementById("detailPrice").innerText = formatMoney(p.price);
+
+    // 🔴 QUAN TRỌNG: hiển thị đặc điểm nổi bật (mỗi dòng 1 <li>)
+    const ul = document.getElementById("detailDesc");
+    ul.innerHTML = "";
+    p.description.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        ul.appendChild(li);
+    });
 }
 // KHỞI TẠO TRANG//
 document.addEventListener("DOMContentLoaded", () => {
