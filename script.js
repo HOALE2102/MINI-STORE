@@ -373,7 +373,7 @@ const PRODUCT_DATA = {
             name: "Oppo Find X8 Pro 5G 16GB/512GB",
             price: 23450000,
             image: "ẢNH OPPO/3.jpg",
-            detailImage: "ẢNH IPHONE/op3.jpg",
+            detailImage: "ẢNH OPPO/op3.jpg",
             status: "Còn hàng",
             description:[
                 "Chip MediaTek Dimensity 9400 8 nhân",
@@ -437,7 +437,7 @@ const PRODUCT_DATA = {
             name: "Oppo Reno13 5G 12GB/256GB",
             price: 14700000,
             image: "ẢNH OPPO/7.jpg",
-            detailImage: "ẢNHOPPO/op7.jpg",
+            detailImage: "ẢNH OPPO/op7.jpg",
             status: "Còn hàng",
             description: [
                 "Chip MediaTek Dimensity 8350 5G 8 nhân",
@@ -679,7 +679,7 @@ function renderUserView() {
     filteredProducts.forEach(p => {
         const card = document.createElement("div");
         card.className = "product-card";
-        //card.onclick = () => showDetail(p);
+        card.onclick = () => showDetail(p);
 
         card.innerHTML = `
             <div class="card-img-wrapper">
