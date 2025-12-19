@@ -666,6 +666,7 @@ const allProducts = Object.keys(PRODUCT_DATA).flatMap(brand =>
     }))
 );
 let filteredProducts = [...allProducts];
+//HIỂN THỊ DANH SÁCH SẢN PHẨM
 function renderUserView() {
     const list = document.getElementById("userProductList");
     if (!list) return;
@@ -688,4 +689,15 @@ function renderUserView() {
         `;
         list.appendChild(card);
     });
+}
+// XÁC ĐỊNH HÃNG TỪ TRANG
+function getBrandFromPage() {
+    const path = window.location.pathname.toLowerCase();
+
+    if (path.includes("apple")) return "Apple";
+    if (path.includes("samsung")) return "Samsung";
+    if (path.includes("oppo")) return "Oppo";
+    if (path.includes("vivo")) return "Vivo";
+
+    return null; 
 }
