@@ -63,6 +63,46 @@
 
         <div class="product-grid" id="userProductList"></div>
     </section>
+     <!-- CHI TIẾT SẢN PHẨM -->
+    <section id="detail-view" class="section">
+        <div class="back-btn" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i> Quay lại danh sách
+        </div>
+
+        <div class="detail-container">
+            <div class="detail-img-box">
+                <img id="detailImage" src="" alt="Product Image">
+            </div>
+
+            <div class="detail-info">
+                <h1 id="detailName"></h1>
+
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <span id="detailBrand"></span>
+                    <span id="detailStatus"></span>
+                </div>
+
+                <div id="detailPrice" class="detail-price"></div>
+
+                <div class="promo-box">
+                    <i class="fas fa-gift"></i> Giảm thêm 5% khi thanh toán qua QR Code
+                </div>
+
+                <h3>Đặc điểm nổi bật:</h3>
+
+                <ul id="detailDesc"></ul>
+
+                <div class="detail-actions">
+                    <button class="btn-action buy-now-btn">
+                        <i class="fas fa-bolt"></i> MUA NGAY
+                    </button>
+                    <button class="btn-secondary add-to-cart-btn">
+                        <i class="fas fa-cart-plus"></i> Thêm vào Giỏ hàng
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 
 <script src="script.js"></script>

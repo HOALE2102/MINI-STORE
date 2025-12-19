@@ -1,4 +1,4 @@
-=<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -18,12 +18,18 @@
                 <i class="fas fa-mobile-alt"></i>
                 <span>MiniStore</span>
             </div>
+
             <div class="search-box">
                 <i class="fas fa-search search-icon"></i>
                 <input type="text"
                        placeholder="Bạn muốn mua gì hôm nay?"
                        onkeyup="handleSearch(this.value)">
             </div>
+               <!-- 1.2: HẾT PHẦN ĐẨY LÊN LẦN 2-->
+
+
+            
+
             <div class="nav-links">
                 <button onclick="window.location.href='index.html'">
                     <i class="fas fa-home"></i>
@@ -59,6 +65,47 @@
         </h2>
 
         <div class="product-grid" id="userProductList"></div>
+    </section>
+    <!-- CHI TIẾT SẢN PHẨM -->
+    <section id="detail-view" class="section">
+        <div class="back-btn" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i> Quay lại danh sách
+        </div>
+
+        <div class="detail-container">
+            <div class="detail-img-box">
+                <img id="detailImage" src="" alt="Product Image">
+            </div>
+
+            <div class="detail-info">
+                <h1 id="detailName"></h1>
+
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <span id="detailBrand"></span>
+                    <span id="detailStatus"></span>
+                </div>
+
+                <div id="detailPrice" class="detail-price"></div>
+
+                <div class="promo-box">
+                    <i class="fas fa-gift"></i> Giảm thêm 5% khi thanh toán qua QR Code
+                </div>
+
+                <h3>Đặc điểm nổi bật:</h3>
+
+                <!-- 🔴 QUAN TRỌNG: đổi từ <p> sang <ul> -->
+                <ul id="detailDesc"></ul>
+
+                <div class="detail-actions">
+                    <button class="btn-action buy-now-btn">
+                        <i class="fas fa-bolt"></i> MUA NGAY
+                    </button>
+                    <button class="btn-secondary add-to-cart-btn">
+                        <i class="fas fa-cart-plus"></i> Thêm vào Giỏ hàng
+                    </button>
+                </div>
+            </div>
+        </div>
     </section>
 </div>
 
