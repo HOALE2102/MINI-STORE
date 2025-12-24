@@ -774,6 +774,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     renderUserView();
+}
+
   
 // Chọn/Bỏ chọn tất cả
 function toggleSelectAll(source) {
@@ -798,7 +800,7 @@ function updateSelectAllStatus() {
         if (labelText) labelText.innerText = isAllChecked ? "Bỏ chọn tất cả" : "Chọn tất cả";
     }
 }
-=======
+
 // Khởi tạo giỏ hàng từ bộ nhớ trình duyệt (localStorage)
 let cart = JSON.parse(localStorage.getItem('miniStoreCart')) || [];
 
@@ -931,7 +933,21 @@ function deleteSelectedItems() {
     renderCart();
     document.getElementById("select-all-checkbox").checked = false;
 }
-=======
+// Lưu giỏ hàng vào LocalStorage
+function saveCart() {
+    localStorage.setItem('miniStoreCart', JSON.stringify(cart));
+}
+
+// Cập nhật số lượng trên icon Header (luôn hiện số 0 nếu trống)
+function updateCartBadge() {
+    const badges = document.querySelectorAll("#cart-count");
+    const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+    badges.forEach(badge => {
+        badge.innerText = totalQty;
+        // Nếu muốn luôn hiện số 0 thì xóa dòng badge.style.display bên dưới
+        badge.style.display = "flex"; 
+    });
+}
 function updateQty(id, delta) {
     const item = cart.find(i => i.id === id);
     if (item) {
@@ -940,4 +956,5 @@ function updateQty(id, delta) {
         saveCart();
         renderCart();
     }
+}
 
