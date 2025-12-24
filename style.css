@@ -438,6 +438,98 @@ h2.section-title {
 .search-box input {
     padding-left: 45px;
 }
+#cart-view {
+    background-color: #f4f6f8;
+    min-height: 100vh;
+}
+
+.cart-wrapper {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+/* Header giỏ hàng */
+.cart-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 15px 0;
+}
+
+.cart-header-row .back-btn {
+    position: absolute;
+    left: 0;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.cart-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Header khi vào giỏ */
+header.cart-mode .nav-links button:not(.btn-cart-header) {
+    display: none !important;
+}
+
+header.cart-mode .logo {
+    display: flex !important;
+}
+
+header.cart-mode .search-box {
+    display: block !important;
+    flex: 1;
+    max-width: 500px;
+    margin: 0 20px;
+}
+
+header.cart-mode .btn-cart-header {
+    display: flex !important;
+}
+
+/* Giỏ hàng trống */
+.empty-cart-wrapper {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.empty-cart-wrapper img {
+    max-width: 260px;
+    margin-bottom: 20px;
+}
+
+.empty-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.empty-sub {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.empty-btn {
+    background: #d70018;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.empty-btn:hover {
+    background: #b50014;
+}
+
+=======
 
 /* --- FR3.4: TOTALS & CART BADGE --- */
 /* Badge trên Header */
@@ -746,3 +838,4 @@ h2.section-title {
         transform: translate(-50%, -50%) scale(0.8);
     }
 }
+
