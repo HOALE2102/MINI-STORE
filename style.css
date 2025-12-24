@@ -438,7 +438,6 @@ h2.section-title {
 .search-box input {
     padding-left: 45px;
 }
-
 /* Danh sách / item sản phẩm */
 .cart-table {
     width: 100%;
@@ -526,4 +525,64 @@ h2.section-title {
 .quantity-wrapper input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+=======
+/* GIỎ HÀNG */
+/* --- FR3.1: CUSTOM TOAST NOTIFICATION --- */
+/* giao diện thêm thành công*/
+/* ===============================
+   FR3.1: THÊM SẢN PHẨM + TOAST
+================================ */
+
+/* Giao diện thông báo thêm thành công */
+.custom-toast {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    background: #28a745;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 9999;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    pointer-events: none;
+    animation: toastShowCenter 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.custom-toast.hide {
+    animation: toastHideCenter 0.3s ease-in forwards;
+}
+
+.custom-toast i {
+    font-size: 20px;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+/* Animation Toast */
+@keyframes toastShowCenter {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes toastHideCenter {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
 }
