@@ -775,3 +775,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderUserView();
 });
+function updateTotal() {
+    let total = 0;
+    let count = 0;
+    const checkboxes = document.querySelectorAll('.item-checkbox');
+    
+    checkboxes.forEach((cb) => {
+        if (cb.checked) {
+            const productId = parseInt(cb.getAttribute('data-id'));
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                total += item.price * item.quantity;
+                count++;
+            }
+        }
+    });
+
+    const totalPriceElement = document.getElementById('cart-total-price');
+    if (totalPriceElement) totalPriceElement.innerText = formatMoney(total);
+
+    const buyBtn = document.querySelector('.buy-now-btn');
+    if (buyBtn) buyBtn.innerText = `Mua ngay (${count})`;
+}
