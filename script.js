@@ -775,6 +775,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderUserView();
 });
+
 // Khởi tạo giỏ hàng từ bộ nhớ trình duyệt (localStorage)
 let cart = JSON.parse(localStorage.getItem('miniStoreCart')) || [];
 
@@ -817,7 +818,6 @@ function showToast(message) {
         setTimeout(() => toast.remove(), 500);
     }, 2500);
 }
-//LÊ LẦN 5
 // Hàm render danh sách sản phẩm trong giỏ
 function renderCart() {
     const cartContent = document.getElementById("cart-content");
@@ -869,3 +869,11 @@ function renderCart() {
     updateTotal();
     updateCartBadge();
 }
+function updateQty(id, delta) {
+    const item = cart.find(i => i.id === id);
+    if (item) {
+        item.quantity += delta;
+        if (item.quantity < 1) item.quantity = 1;
+        saveCart();
+        renderCart();
+    }
