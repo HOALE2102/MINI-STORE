@@ -515,3 +515,234 @@ h2.section-title {
     align-items: center;
     justify-content: center;
 }
+=======
+
+/* Checkbox tròn */
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: #d70018;
+    border-color: #d70018;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Thanh chọn + xóa */
+.cart-control-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-top: 5px;
+}
+
+.select-all-label .label-text {
+    color: #003366;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.delete-selected {
+    color: #888;
+    font-style: italic;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.delete-selected:hover {
+    color: #d70018;
+    text-decoration: underline;
+}
+
+/* Icon xóa từng sản phẩm */
+.delete-icon {
+    color: #d70018;
+    cursor: pointer;
+    font-size: 18px;
+=======
+/* Danh sách / item sản phẩm */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.cart-table th,
+.cart-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+.cart-product {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-align: left;
+}
+
+.cart-product img { width: 60px; height: 60px; object-fit: contain; }
+
+/* Thẻ sản phẩm trong giỏ */
+.cart-item {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Khung tăng giảm số lượng */
+.quantity-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f2f2f2;
+    border-radius: 8px;
+    width: fit-content;
+    height: 30px;
+    overflow: hidden;
+}
+
+/* Nút + - */
+.qty-btn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.qty-btn:hover {
+    background: #e5e5e5;
+}
+
+/* Ô hiển thị số lượng */
+.quantity-wrapper input {
+    width: 45px;
+    height: 30px;
+    text-align: center;
+    border: none;
+    background: transparent;
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    padding: 0;
+    margin: 0;
+    line-height: 30px;
+    outline: none;
+    -moz-appearance: textfield;
+}
+
+.quantity-wrapper input::-webkit-outer-spin-button,
+.quantity-wrapper input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+=======
+/* GIỎ HÀNG */
+/* --- FR3.1: CUSTOM TOAST NOTIFICATION --- */
+/* giao diện thêm thành công*/
+/* ===============================
+   FR3.1: THÊM SẢN PHẨM + TOAST
+================================ */
+
+/* Giao diện thông báo thêm thành công */
+.custom-toast {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    background: #28a745;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 9999;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    pointer-events: none;
+    animation: toastShowCenter 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.custom-toast.hide {
+    animation: toastHideCenter 0.3s ease-in forwards;
+}
+
+.custom-toast i {
+    font-size: 20px;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+/* Animation Toast */
+@keyframes toastShowCenter {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes toastHideCenter {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+}
