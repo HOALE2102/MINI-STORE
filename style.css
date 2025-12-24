@@ -438,6 +438,95 @@ h2.section-title {
 .search-box input {
     padding-left: 45px;
 }
+/* Danh sách / item sản phẩm */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.cart-table th,
+.cart-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+.cart-product {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-align: left;
+}
+
+.cart-product img { width: 60px; height: 60px; object-fit: contain; }
+
+/* Thẻ sản phẩm trong giỏ */
+.cart-item {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Khung tăng giảm số lượng */
+.quantity-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f2f2f2;
+    border-radius: 8px;
+    width: fit-content;
+    height: 30px;
+    overflow: hidden;
+}
+
+/* Nút + - */
+.qty-btn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.qty-btn:hover {
+    background: #e5e5e5;
+}
+
+/* Ô hiển thị số lượng */
+.quantity-wrapper input {
+    width: 45px;
+    height: 30px;
+    text-align: center;
+    border: none;
+    background: transparent;
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    padding: 0;
+    margin: 0;
+    line-height: 30px;
+    outline: none;
+    -moz-appearance: textfield;
+}
+
+.quantity-wrapper input::-webkit-outer-spin-button,
+.quantity-wrapper input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+=======
 /* GIỎ HÀNG */
 /* --- FR3.1: CUSTOM TOAST NOTIFICATION --- */
 /* giao diện thêm thành công*/

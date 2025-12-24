@@ -774,7 +774,31 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     renderUserView();
-});
+  
+// Chọn/Bỏ chọn tất cả
+function toggleSelectAll(source) {
+    const checkboxes = document.querySelectorAll('.item-checkbox');
+    const labelText = document.getElementById('select-all-text');
+
+    checkboxes.forEach(cb => cb.checked = source.checked);
+    if (labelText) labelText.innerText = source.checked ? "Bỏ chọn tất cả" : "Chọn tất cả";
+    updateTotal(); 
+}
+
+// Cập nhật trạng thái nút "Chọn tất cả" khi tích lẻ
+function updateSelectAllStatus() {
+    const allItems = document.querySelectorAll('.item-checkbox');
+    const checkedItems = document.querySelectorAll('.item-checkbox:checked');
+    const selectAllBtn = document.getElementById("select-all-checkbox");
+    const labelText = document.getElementById('select-all-text');
+
+    if (selectAllBtn && allItems.length > 0) {
+        const isAllChecked = allItems.length === checkedItems.length;
+        selectAllBtn.checked = isAllChecked;
+        if (labelText) labelText.innerText = isAllChecked ? "Bỏ chọn tất cả" : "Chọn tất cả";
+    }
+}
+=======
 // Khởi tạo giỏ hàng từ bộ nhớ trình duyệt (localStorage)
 let cart = JSON.parse(localStorage.getItem('miniStoreCart')) || [];
 
@@ -817,7 +841,6 @@ function showToast(message) {
         setTimeout(() => toast.remove(), 500);
     }, 2500);
 }
-//LÊ LẦN 5
 // Hàm render danh sách sản phẩm trong giỏ
 function renderCart() {
     const cartContent = document.getElementById("cart-content");
@@ -869,6 +892,7 @@ function renderCart() {
     updateTotal();
     updateCartBadge();
 }
+  
 // Xóa 1 sản phẩm cụ thể
 function removeItem(id) {
     cart = cart.filter(item => item.id !== id);
@@ -907,3 +931,13 @@ function deleteSelectedItems() {
     renderCart();
     document.getElementById("select-all-checkbox").checked = false;
 }
+=======
+function updateQty(id, delta) {
+    const item = cart.find(i => i.id === id);
+    if (item) {
+        item.quantity += delta;
+        if (item.quantity < 1) item.quantity = 1;
+        saveCart();
+        renderCart();
+    }
+
