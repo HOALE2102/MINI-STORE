@@ -775,3 +775,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderUserView();
 });
+// Khởi tạo giỏ hàng từ bộ nhớ trình duyệt (localStorage)
+let cart = JSON.parse(localStorage.getItem('miniStoreCart')) || [];
+
+// Lưu giỏ hàng và cập nhật giao diện
+function saveCart() {
+    localStorage.setItem('miniStoreCart', JSON.stringify(cart));
+}
+
+// Hàm thêm sản phẩm vào giỏ
+function addToCart(product, quantity = 1, redirectToCart = false) {
+    if (!product) return;
+    
+    const existingItem = cart.find(item => item.id === product.id);
+    if (existingItem) {
+        existingItem.quantity += quantity;
+    } else {
+        cart.push({ ...product, quantity: quantity });
+    }
+
+    saveCart();
+    updateCartBadge(); // Cập nhật số lượng trên icon ngay lập tức
+
+    // Hiển thị thông báo Toast
+    showToast(`Đã thêm vào giỏ hàng thành công!`);
+
+    if (redirectToCart) showCart();
+}
+
+// Hàm tạo và hiển thị thông báo Toast
+function showToast(message) {
+    const toast = document.createElement("div");
+    toast.className = "custom-toast";
+    toast.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+    
+    document.body.appendChild(toast);
+    
+    // Tự động xóa sau 3 giây
+    setTimeout(() => {
+        toast.classList.add("hide");
+        setTimeout(() => toast.remove(), 500);
+    }, 2500);
+}
