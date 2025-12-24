@@ -775,3 +775,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderUserView();
 });
+
+// Chọn/Bỏ chọn tất cả
+function toggleSelectAll(source) {
+    const checkboxes = document.querySelectorAll('.item-checkbox');
+    const labelText = document.getElementById('select-all-text');
+
+    checkboxes.forEach(cb => cb.checked = source.checked);
+    if (labelText) labelText.innerText = source.checked ? "Bỏ chọn tất cả" : "Chọn tất cả";
+    updateTotal(); 
+}
+
+// Cập nhật trạng thái nút "Chọn tất cả" khi tích lẻ
+function updateSelectAllStatus() {
+    const allItems = document.querySelectorAll('.item-checkbox');
+    const checkedItems = document.querySelectorAll('.item-checkbox:checked');
+    const selectAllBtn = document.getElementById("select-all-checkbox");
+    const labelText = document.getElementById('select-all-text');
+
+    if (selectAllBtn && allItems.length > 0) {
+        const isAllChecked = allItems.length === checkedItems.length;
+        selectAllBtn.checked = isAllChecked;
+        if (labelText) labelText.innerText = isAllChecked ? "Bỏ chọn tất cả" : "Chọn tất cả";
+    }
+}
