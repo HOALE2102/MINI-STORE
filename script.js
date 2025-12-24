@@ -775,3 +775,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderUserView();
 });
+function updateQty(id, delta) {
+    const item = cart.find(i => i.id === id);
+    if (item) {
+        item.quantity += delta;
+        if (item.quantity < 1) item.quantity = 1;
+        saveCart();
+        renderCart();
+    }
+}
