@@ -892,6 +892,46 @@ function renderCart() {
     updateTotal();
     updateCartBadge();
 }
+  
+// Xóa 1 sản phẩm cụ thể
+function removeItem(id) {
+    cart = cart.filter(item => item.id !== id);
+    saveCart();
+    renderCart();
+}
+
+function removeItem(id) {
+    cart = cart.filter(item => item.id !== id);
+    saveCart();
+    renderCart();
+}
+
+// Xóa các sản phẩm đã chọn qua checkbox
+function deleteSelectedItems() {
+    const selectedCheckboxes = document.querySelectorAll('.item-checkbox:checked');
+    if (selectedCheckboxes.length === 0) {
+        showToast("Vui lòng chọn sản phẩm!");
+        return;
+    }
+    const selectedIds = Array.from(selectedCheckboxes).map(cb => parseInt(cb.getAttribute('data-id')));
+    cart = cart.filter(item => !selectedIds.includes(item.id));
+    saveCart();
+    renderCart();
+    document.getElementById("select-all-checkbox").checked = false;
+}
+function deleteSelectedItems() {
+    const selectedCheckboxes = document.querySelectorAll('.item-checkbox:checked');
+    if (selectedCheckboxes.length === 0) {
+        showToast("Vui lòng chọn sản phẩm!");
+        return;
+    }
+    const selectedIds = Array.from(selectedCheckboxes).map(cb => parseInt(cb.getAttribute('data-id')));
+    cart = cart.filter(item => !selectedIds.includes(item.id));
+    saveCart();
+    renderCart();
+    document.getElementById("select-all-checkbox").checked = false;
+}
+=======
 function updateQty(id, delta) {
     const item = cart.find(i => i.id === id);
     if (item) {
