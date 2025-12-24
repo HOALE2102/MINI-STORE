@@ -438,3 +438,80 @@ h2.section-title {
 .search-box input {
     padding-left: 45px;
 }
+
+/* --- FR3.4: TOTALS & CART BADGE --- */
+/* Badge trên Header */
+/* ===============================
+   FR3.4: TÍNH TIỀN + BADGE
+================================ */
+
+.cart-total {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#cart-total-price {
+    color: #d70018;
+    font-weight: bold;
+    font-size: 17px;
+    margin-left: 5px;
+}
+
+/* Footer giỏ hàng */
+.cart-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 15px 20px;
+    border-top: 1px solid #eee;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 650px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    z-index: 1000;
+}
+
+.cart-total-left {
+    font-size: 17px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Nút mua */
+.buy-now-btn {
+    background-color: #d70018;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    min-width: 120px;
+    transition: 0.2s;
+}
+
+.buy-now-btn:hover {
+    background-color: #b50014;
+}
+
+/* Badge giỏ hàng */
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff0;
+    color: #d70018;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
