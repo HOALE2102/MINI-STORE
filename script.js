@@ -957,4 +957,15 @@ function updateQty(id, delta) {
         renderCart();
     }
 }
-
+// Chuyển sang trang giỏ hàng
+function showCart() {
+    document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+    const cartView = document.getElementById("cart-view");
+    if (cartView) {
+        cartView.classList.add("active");
+        renderCart();
+    }
+    const slider = document.getElementById("hero-slider");
+    if (slider) slider.style.display = "none";
+    setHeaderCartMode(true);
+}
