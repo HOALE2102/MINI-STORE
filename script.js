@@ -796,7 +796,8 @@ function showDetail(p) {
 function goBack() {
     // Ẩn tất cả section
     document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
-// 🔥 NẾU ĐANG CÓ SẢN PHẨM CHI TIẾT → QUAY VỀ HÃNG
+
+    // 🔥 NẾU ĐANG CÓ SẢN PHẨM CHI TIẾT → QUAY VỀ HÃNG
     if (currentProductDetail && currentProductDetail.brand) {
         filteredProducts = allProducts.filter(
             p => p.brand === currentProductDetail.brand
@@ -883,7 +884,8 @@ function renderCart() {
     const emptyCart = document.getElementById("empty-cart");   // UI giỏ hàng trống
     const cartFooter = document.querySelector(".cart-footer"); // thanh tạm tính
     const cartControlBar = document.querySelector(".cart-control-bar");
-if (!cartContent) return;
+
+    if (!cartContent) return;
 
     // 🔴 TRƯỜNG HỢP: GIỎ HÀNG TRỐNG
     if (cart.length === 0) {
@@ -964,7 +966,8 @@ function updateTotal() {
     if (totalPriceElement) {
         totalPriceElement.innerText = total.toLocaleString('vi-VN') + 'đ';
     }
-// Cập nhật số lượng hiển thị trên nút "Mua ngay"
+
+    // Cập nhật số lượng hiển thị trên nút "Mua ngay"
     const buyBtn = document.querySelector('.buy-now-btn');
     if (buyBtn) {
         // Cập nhật đúng text theo yêu cầu (Mua ngay + số lượng chọn)
@@ -1054,7 +1057,7 @@ function toggleSelectAll(source) {
 function updateSelectAllStatus() {
     const allItems = document.querySelectorAll('.item-checkbox');
     const checkedItems = document.querySelectorAll('.item-checkbox:checked');
-const selectAllBtn = document.getElementById("select-all-checkbox");
+    const selectAllBtn = document.getElementById("select-all-checkbox");
     const labelText = document.getElementById('select-all-text');
 
     if (selectAllBtn && allItems.length > 0) {
