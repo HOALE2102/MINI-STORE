@@ -90,18 +90,58 @@
                 <h3>Đặc điểm nổi bật:</h3>
 
                 <ul id="detailDesc"></ul>
-
-                <div class="detail-actions">
-                    <button class="btn-action buy-now-btn">
-                        <i class="fas fa-bolt"></i> MUA NGAY
-                    </button>
-                    <button class="btn-secondary add-to-cart-btn">
-                        <i class="fas fa-cart-plus"></i> Thêm vào Giỏ hàng
-                    </button>
+            <div class="detail-actions">
+                <button class="btn-action buy-now-btn" onclick="addToCart(currentProductDetail, 1, true)">
+                    <i class="fas fa-bolt"></i> MUA NGAY
+                </button>
+                <button class="btn-secondary add-to-cart-btn" onclick="addToCart(currentProductDetail)">
+                    <i class="fas fa-cart-plus"></i> Thêm vào Giỏ hàng
+                </button>
                 </div>
+                
             </div>
         </div>
     </section>
+     <section id="cart-view" class="section">
+    <div class="container cart-wrapper"> 
+        <div class="cart-header-row">
+            <div class="back-btn" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+            <h2 class="cart-title">Giỏ hàng của bạn</h2>
+        </div>
+
+        <div class="cart-control-bar">
+            <label class="checkbox-container select-all-label">
+                <input type="checkbox" id="select-all-checkbox" onchange="toggleSelectAll(this)">
+                <span class="checkmark"></span>
+                <span id="select-all-text" class="label-text">Chọn tất cả</span>
+            </label>
+            <span class="delete-selected" onclick="deleteSelectedItems()">Xóa sản phẩm đã chọn</span>
+        </div>
+
+        <div id="cart-content">
+        </div>
+        <!-- GIỎ HÀNG TRỐNG -->
+        <div id="empty-cart" style="display: none;">
+            <div class="empty-cart-wrapper">
+                <img src="ẢNH GIỎ HÀNG/GH.jpg" alt="Giỏ hàng trống">
+                <p class="empty-title">Giỏ hàng của bạn đang trống.</p>
+                <p class="empty-sub">Hãy chọn thêm sản phẩm để mua sắm nhé</p>
+                <button class="empty-btn" onclick="goBack()">Quay lại trang chủ</button>
+            </div>
+        </div>
+
+        <!-- CỤM NÚT HÀNH ĐỘNG -->
+    <div class="cart-footer">
+        <div class="cart-total-left">
+            Tạm tính: <span id="cart-total-price">0đ</span>
+        </div>
+
+        <button class="buy-now-btn" onclick="alert('Thanh toán')">
+            Mua ngay (0)
+        </button>
+    </div>
 </div>
 
 <script src="script.js"></script>
