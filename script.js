@@ -869,3 +869,21 @@ function renderCart() {
     updateTotal();
     updateCartBadge();
 }
+
+// Thay đổi chế độ Header (Ẩn các link không cần thiết khi ở Giỏ hàng)
+function setHeaderCartMode(isCart) {
+    const header = document.querySelector("header");
+    if (!header) return;
+    isCart ? header.classList.add("cart-mode") : header.classList.remove("cart-mode");
+}
+
+// Quay lại (Khi nhấn nút mũi tên)
+function goBack() {
+    setHeaderCartMode(false);
+    showAllProducts(); // Hoặc window.location.href = 'index.html'
+}
+
+// Khởi chạy khi tải trang
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartBadge();
+});
