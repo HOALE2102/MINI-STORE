@@ -817,3 +817,55 @@ function showToast(message) {
         setTimeout(() => toast.remove(), 500);
     }, 2500);
 }
+//LÊ LẦN 5
+// Hàm render danh sách sản phẩm trong giỏ
+function renderCart() {
+    const cartContent = document.getElementById("cart-content");
+    const emptyCart = document.getElementById("empty-cart");
+    const cartFooter = document.querySelector(".cart-footer");
+    const cartControlBar = document.querySelector(".cart-control-bar");
+
+    if (!cartContent) return;
+
+    // Kiểm tra nếu giỏ hàng trống
+    if (cart.length === 0) {
+        cartContent.innerHTML = "";
+        if (emptyCart) emptyCart.style.display = "block";
+        if (cartFooter) cartFooter.style.display = "none";
+        if (cartControlBar) cartControlBar.style.display = "none"; 
+        updateCartBadge();
+        return;
+    }
+
+    // Nếu có sản phẩm
+    if (emptyCart) emptyCart.style.display = "none";
+    if (cartFooter) cartFooter.style.display = "flex";
+    if (cartControlBar) cartControlBar.style.display = "flex"; 
+
+    cartContent.innerHTML = cart.map(item => `
+        <div class="cart-item">
+            <label class="checkbox-container">
+                <input type="checkbox" class="item-checkbox" data-id="${item.id}" onchange="updateTotal(); updateSelectAllStatus();">
+                <span class="checkmark"></span>
+            </label>
+
+            <img src="${item.image}" class="cart-product-img">
+
+            <div style="flex: 1;">
+                <h4>${item.name}</h4>
+                <p style="color: #d70018; font-weight: bold;">${formatMoney(item.price)}</p>
+            </div>
+
+            <div class="quantity-wrapper">
+                <button class="qty-btn" onclick="updateQty(${item.id}, -1)">-</button>
+                <input type="number" value="${item.quantity}" readonly>
+                <button class="qty-btn" onclick="updateQty(${item.id}, 1)">+</button>
+            </div>
+
+            <i class="fas fa-trash-alt" style="margin-left: 15px; color: #999; cursor: pointer;" onclick="removeItem(${item.id})"></i>
+        </div>
+    `).join('');
+
+    updateTotal();
+    updateCartBadge();
+}
