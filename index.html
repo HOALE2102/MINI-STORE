@@ -90,15 +90,15 @@
                 <h3>Đặc điểm nổi bật:</h3>
 
                 <ul id="detailDesc"></ul>
-
-                <div class="detail-actions">
-                    <button class="btn-action buy-now-btn">
-                        <i class="fas fa-bolt"></i> MUA NGAY
-                    </button>
-                    <button class="btn-secondary add-to-cart-btn">
-                        <i class="fas fa-cart-plus"></i> Thêm vào Giỏ hàng
-                    </button>
+            <div class="detail-actions">
+                <button class="btn-action buy-now-btn" onclick="addToCart(currentProductDetail, 1, true)">
+                    <i class="fas fa-bolt"></i> MUA NGAY
+                </button>
+                <button class="btn-secondary add-to-cart-btn" onclick="addToCart(currentProductDetail)">
+                    <i class="fas fa-cart-plus"></i> Thêm vào Giỏ hàng
+                </button>
                 </div>
+                
             </div>
         </div>
     </section>
