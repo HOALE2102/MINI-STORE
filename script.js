@@ -774,7 +774,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     renderUserView();
-});
+}
+
+  
+// Chọn/Bỏ chọn tất cả
+function toggleSelectAll(source) {
+    const checkboxes = document.querySelectorAll('.item-checkbox');
+    const labelText = document.getElementById('select-all-text');
+
+    checkboxes.forEach(cb => cb.checked = source.checked);
+    if (labelText) labelText.innerText = source.checked ? "Bỏ chọn tất cả" : "Chọn tất cả";
+    updateTotal(); 
+}
+
+// Cập nhật trạng thái nút "Chọn tất cả" khi tích lẻ
+function updateSelectAllStatus() {
+    const allItems = document.querySelectorAll('.item-checkbox');
+    const checkedItems = document.querySelectorAll('.item-checkbox:checked');
+    const selectAllBtn = document.getElementById("select-all-checkbox");
+    const labelText = document.getElementById('select-all-text');
+
+    if (selectAllBtn && allItems.length > 0) {
+        const isAllChecked = allItems.length === checkedItems.length;
+        selectAllBtn.checked = isAllChecked;
+        if (labelText) labelText.innerText = isAllChecked ? "Bỏ chọn tất cả" : "Chọn tất cả";
+    }
+}
+
 // Khởi tạo giỏ hàng từ bộ nhớ trình duyệt (localStorage)
 let cart = JSON.parse(localStorage.getItem('miniStoreCart')) || [];
 
@@ -817,7 +843,6 @@ function showToast(message) {
         setTimeout(() => toast.remove(), 500);
     }, 2500);
 }
-//LÊ LẦN 5
 // Hàm render danh sách sản phẩm trong giỏ
 function renderCart() {
     const cartContent = document.getElementById("cart-content");
@@ -870,6 +895,7 @@ function renderCart() {
     updateCartBadge();
 }
 
+
 // Thay đổi chế độ Header (Ẩn các link không cần thiết khi ở Giỏ hàng)
 function setHeaderCartMode(isCart) {
     const header = document.querySelector("header");
@@ -887,3 +913,79 @@ function goBack() {
 document.addEventListener('DOMContentLoaded', () => {
     updateCartBadge();
 });
+=======
+  
+// Xóa 1 sản phẩm cụ thể
+function removeItem(id) {
+    cart = cart.filter(item => item.id !== id);
+    saveCart();
+    renderCart();
+}
+
+function removeItem(id) {
+    cart = cart.filter(item => item.id !== id);
+    saveCart();
+    renderCart();
+}
+
+// Xóa các sản phẩm đã chọn qua checkbox
+function deleteSelectedItems() {
+    const selectedCheckboxes = document.querySelectorAll('.item-checkbox:checked');
+    if (selectedCheckboxes.length === 0) {
+        showToast("Vui lòng chọn sản phẩm!");
+        return;
+    }
+    const selectedIds = Array.from(selectedCheckboxes).map(cb => parseInt(cb.getAttribute('data-id')));
+    cart = cart.filter(item => !selectedIds.includes(item.id));
+    saveCart();
+    renderCart();
+    document.getElementById("select-all-checkbox").checked = false;
+}
+function deleteSelectedItems() {
+    const selectedCheckboxes = document.querySelectorAll('.item-checkbox:checked');
+    if (selectedCheckboxes.length === 0) {
+        showToast("Vui lòng chọn sản phẩm!");
+        return;
+    }
+    const selectedIds = Array.from(selectedCheckboxes).map(cb => parseInt(cb.getAttribute('data-id')));
+    cart = cart.filter(item => !selectedIds.includes(item.id));
+    saveCart();
+    renderCart();
+    document.getElementById("select-all-checkbox").checked = false;
+}
+// Lưu giỏ hàng vào LocalStorage
+function saveCart() {
+    localStorage.setItem('miniStoreCart', JSON.stringify(cart));
+}
+
+// Cập nhật số lượng trên icon Header (luôn hiện số 0 nếu trống)
+function updateCartBadge() {
+    const badges = document.querySelectorAll("#cart-count");
+    const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+    badges.forEach(badge => {
+        badge.innerText = totalQty;
+        // Nếu muốn luôn hiện số 0 thì xóa dòng badge.style.display bên dưới
+        badge.style.display = "flex"; 
+    });
+}
+function updateQty(id, delta) {
+    const item = cart.find(i => i.id === id);
+    if (item) {
+        item.quantity += delta;
+        if (item.quantity < 1) item.quantity = 1;
+        saveCart();
+        renderCart();
+    }
+}
+// Chuyển sang trang giỏ hàng
+function showCart() {
+    document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+    const cartView = document.getElementById("cart-view");
+    if (cartView) {
+        cartView.classList.add("active");
+        renderCart();
+    }
+    const slider = document.getElementById("hero-slider");
+    if (slider) slider.style.display = "none";
+    setHeaderCartMode(true);
+}
