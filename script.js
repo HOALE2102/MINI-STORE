@@ -1099,6 +1099,20 @@ function setHeaderCartMode(isCart) {
         header.classList.remove("cart-mode");
     }
 }
+
+//
+function openAuthModal() {
+    document.getElementById('authModal').style.display = 'flex';
+}
+
+function closeAuthModal() {
+    document.getElementById('authModal').style.display = 'none';
+}
+
+function toggleAuth(type) {
+    document.getElementById('login-form').style.display = type === 'login' ? 'block' : 'none';
+    document.getElementById('register-form').style.display = type === 'register' ? 'block' : 'none';
+}
 function updateAuthUI() {
     const isLoggedIn = localStorage.getItem("miniStoreLoggedIn") === "true";
 

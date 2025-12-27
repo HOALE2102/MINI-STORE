@@ -166,6 +166,20 @@
         </button>
     </div>
 </div>
+</section>
+<div id="authModal" class="auth-modal">
+    <div class="auth-modal-content">
+        <span class="close-modal" onclick="closeAuthModal()">&times;</span>
+        
+        <div id="login-form">
+            <h2 class="auth-title">ĐĂNG NHẬP</h2>
+            <div class="input-group">
+                <input type="text" id="loginUser" placeholder="Tên đăng nhập">
+                <input type="password" id="loginPass" placeholder="Mật khẩu">
+            </div>
+            <button class="btn-auth" onclick="handleLogin()">ĐĂNG NHẬP</button>
+            <p class="auth-switch">Chưa có tài khoản? <a href="#" onclick="toggleAuth('register')">Đăng ký</a></p>
+        </div>
 <script src="script.js"></script>
 </body>
 </html>
