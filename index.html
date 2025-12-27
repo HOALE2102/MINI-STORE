@@ -44,6 +44,24 @@
                     <li onclick="filterByBrand('Vivo')">Vivo</li>
                 </ul>
             </button>
+            <!--thêm cho tài khoản-->
+            <div id="auth-area">
+                <!-- Chưa đăng nhập -->
+                <button id="login-btn" onclick="openAuthModal()">
+                    <i class="fas fa-user"></i> Đăng nhập
+                </button>
+
+                <!-- Đã đăng nhập -->
+                <div id="user-menu" class="user-menu" style="display:none;">
+                    <div class="user-trigger">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+
+                    <ul class="user-dropdown">
+                        <li class="logout" onclick="logout()">Đăng xuất</li>
+                    </ul>
+                </div>
+            </div>
             <button onclick="showCart()" class="btn-cart-header">
                 <i class="fas fa-shopping-cart"></i>
                 <span>Giỏ hàng</span>

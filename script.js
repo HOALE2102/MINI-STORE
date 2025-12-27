@@ -1099,3 +1099,19 @@ function setHeaderCartMode(isCart) {
         header.classList.remove("cart-mode");
     }
 }
+function updateAuthUI() {
+    const isLoggedIn = localStorage.getItem("miniStoreLoggedIn") === "true";
+
+    const loginBtn = document.getElementById("login-btn");
+    const userMenu = document.getElementById("user-menu");
+
+    if (!loginBtn || !userMenu) return;
+
+    loginBtn.style.display = isLoggedIn ? "none" : "block";
+    userMenu.style.display = isLoggedIn ? "block" : "none";
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    updateAuthUI();
+});
