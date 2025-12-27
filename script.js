@@ -847,6 +847,14 @@ function saveCart() {
 
 // FR3.1: Thêm sản phẩm vào giỏ
 function addToCart(product, quantity = 1, redirectToCart = false) {
+     if (!isLoggedIn()) {
+        showToast("Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!");
+        openAuthModal(); // mở form đăng nhập
+        return;
+    }
+
+    // ✅ ĐÃ ĐĂNG NHẬP → CHẠY BÌNH THƯỜNG
+    if (!product) return;
     if (!product) return;
     
     const existingItem = cart.find(item => item.id === product.id);
@@ -1100,32 +1108,6 @@ function setHeaderCartMode(isCart) {
     }
 }
 
-//
-function openAuthModal() {
-    document.getElementById('authModal').style.display = 'flex';
+function isLoggedIn() {
+    return localStorage.getItem("miniStoreLoggedIn") === "true";
 }
-
-function closeAuthModal() {
-    document.getElementById('authModal').style.display = 'none';
-}
-
-function toggleAuth(type) {
-    document.getElementById('login-form').style.display = type === 'login' ? 'block' : 'none';
-    document.getElementById('register-form').style.display = type === 'register' ? 'block' : 'none';
-}
-function updateAuthUI() {
-    const isLoggedIn = localStorage.getItem("miniStoreLoggedIn") === "true";
-
-    const loginBtn = document.getElementById("login-btn");
-    const userMenu = document.getElementById("user-menu");
-
-    if (!loginBtn || !userMenu) return;
-
-    loginBtn.style.display = isLoggedIn ? "none" : "block";
-    userMenu.style.display = isLoggedIn ? "block" : "none";
-}
-
-
-document.addEventListener("DOMContentLoaded", () => {
-    updateAuthUI();
-});
