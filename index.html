@@ -44,6 +44,24 @@
                     <li onclick="filterByBrand('Vivo')">Vivo</li>
                 </ul>
             </button>
+            <!--thêm cho tài khoản-->
+            <div id="auth-area">
+                <!-- Chưa đăng nhập -->
+                <button id="login-btn" onclick="openAuthModal()">
+                    <i class="fas fa-user"></i> Đăng nhập
+                </button>
+
+                <!-- Đã đăng nhập -->
+                <div id="user-menu" class="user-menu" style="display:none;">
+                    <div class="user-trigger">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+
+                    <ul class="user-dropdown">
+                        <li class="logout" onclick="logout()">Đăng xuất</li>
+                    </ul>
+                </div>
+            </div>
             <button onclick="showCart()" class="btn-cart-header">
                 <i class="fas fa-shopping-cart"></i>
                 <span>Giỏ hàng</span>
@@ -148,7 +166,23 @@
         </button>
     </div>
 </div>
-<div id="register-form" style="display:none;">
+
+
+</section>
+<div id="authModal" class="auth-modal">
+    <div class="auth-modal-content">
+        <span class="close-modal" onclick="closeAuthModal()">&times;</span>
+        
+        <div id="login-form">
+            <h2 class="auth-title">ĐĂNG NHẬP</h2>
+            <div class="input-group">
+                <input type="text" id="loginUser" placeholder="Tên đăng nhập">
+                <input type="password" id="loginPass" placeholder="Mật khẩu">
+            </div>
+            <button class="btn-auth" onclick="handleLogin()">ĐĂNG NHẬP</button>
+            <p class="auth-switch">Chưa có tài khoản? <a href="#" onclick="toggleAuth('register')">Đăng ký</a></p>
+        </div>
+      <div id="register-form" style="display:none;">
             <h2 class="auth-title">ĐĂNG KÝ</h2>
             <div class="input-group">
                 <input type="text" id="regUser" placeholder="Tên đăng nhập (ít nhất 3 ký tự)">
@@ -160,6 +194,8 @@
         </div>
     </div>
 </div>
+
+
 <script src="script.js"></script>
 </body>
 </html>

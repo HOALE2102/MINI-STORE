@@ -881,5 +881,116 @@ header.cart-mode .btn-cart-header {
 .empty-btn:hover {
     background: #b50014;
 }
+.auth-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    align-items: center; justify-content: center;
+}
+.auth-modal-content {
+    background: white; padding: 30px; border-radius: 10px;
+    width: 350px; text-align: center; position: relative;
+}
+.auth-title { color: var(--primary-color); margin-bottom: 20px; }
+.input-group input {
+    width: 100%; padding: 12px; margin-bottom: 10px;
+    border: 1px solid #ddd; border-radius: 5px;
+}
+.btn-auth {
+    width: 100%; padding: 12px;
+    background: var(--primary-color); color: white;
+    border: none; border-radius: 5px; cursor: pointer; font-weight: bold;
+}
+.auth-switch { margin-top: 15px; font-size: 14px; }
+.auth-switch a { color: var(--primary-color); text-decoration: none; font-weight: bold; }
+.close-modal { position: absolute; right: 15px; top: 10px; font-size: 24px; cursor: pointer; }
+.user-menu {
+    position: relative;
+    cursor: pointer;
+}
 
+/* Icon người */
+.user-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    color: #fff;
+    padding: 8px;
+    border-radius: 50%;
+}
+
+
+.user-trigger:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+/* Dropdown */
+.user-dropdown {
+    position: absolute;
+    top: 48px;               /* 👈 QUAN TRỌNG: sát icon */
+    right: 0;
+    width: 220px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    list-style: none;
+    padding: 8px 0;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-5px);
+    transition: 0.2s ease;
+
+    z-index: 9999;
+}
+
+/* TẠO VÙNG ĐỆM CHỐNG TỤT HOVER */
+.user-dropdown::before {
+    content: "";
+    position: absolute;
+    top: -12px;
+    right: 10px;
+    width: 100%;
+    height: 12px;
+}
+
+/* Hover vào icon HOẶC dropdown đều mở */
+.user-menu:hover .user-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Item */
+.user-dropdown li {
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #333;
+    transition: 0.2s;
+}
+
+.user-dropdown li:hover {
+    background: #f5f5f5;
+}
+
+/* Divider */
+.user-dropdown .divider {
+    height: 1px;
+    background: #eee;
+    margin: 6px 0;
+    padding: 0;
+}
+
+/* Logout nổi bật */
+.user-dropdown .logout {
+    color: #d70018;
+    font-weight: 600;
+}
+
+.user-dropdown .logout:hover {
+    background: #fff1f2;
+}
 

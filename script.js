@@ -1100,6 +1100,35 @@ function setHeaderCartMode(isCart) {
     }
 }
 
+//
+function openAuthModal() {
+    document.getElementById('authModal').style.display = 'flex';
+}
+
+function closeAuthModal() {
+    document.getElementById('authModal').style.display = 'none';
+}
+
+function toggleAuth(type) {
+    document.getElementById('login-form').style.display = type === 'login' ? 'block' : 'none';
+    document.getElementById('register-form').style.display = type === 'register' ? 'block' : 'none';
+}
+function updateAuthUI() {
+    const isLoggedIn = localStorage.getItem("miniStoreLoggedIn") === "true";
+
+    const loginBtn = document.getElementById("login-btn");
+    const userMenu = document.getElementById("user-menu");
+
+    if (!loginBtn || !userMenu) return;
+
+    loginBtn.style.display = isLoggedIn ? "none" : "block";
+    userMenu.style.display = isLoggedIn ? "block" : "none";
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    updateAuthUI();
+});
 // 1. CHỨC NĂNG ĐĂNG KÝ
 function handleRegister() {
     const user = document.getElementById('regUser').value.trim();
