@@ -2,66 +2,86 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>📱 MiniStore</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ministore - Điện thoại chính hãng</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
 <header>
-    <div class="container">
-        <div class="nav-wrapper">
+    <div class="container nav-wrapper">
+        <div class="logo" onclick="showAllProducts()">
+            <i class="fas fa-mobile-alt"></i> MiniStore
+        </div>
 
-            <div class="logo">
-                <i class="fas fa-mobile-alt"></i>
-                <span>MiniStore</span>
-            </div>
-            
-             <div class="search-box">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text"
-                       placeholder="Bạn muốn mua gì hôm nay?"
-                       onkeyup="handleSearch(this.value)">
-            </div>
-            
-            <div class="nav-links">
+        <div class="search-box">
+            <i class="fas fa-search search-icon"></i>
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Bạn muốn mua gì hôm nay?"
+                onkeyup="handleSearch(this.value)"
+            >
+        </div>
 
-                <button onclick="window.location.href='index.html'">
-                    <i class="fas fa-home"></i>
-                    <span>Trang chủ</span>
+        <div class="nav-links">
+            <button onclick="showAllProducts()">
+                <i class="fas fa-home"></i> Trang chủ
+            </button>
+
+            <button class="has-dropdown category-btn">
+                <i class="fas fa-th-large"></i>
+                <span>Danh mục</span>
+                <i class="fas fa-chevron-down arrow-icon"></i>
+                <ul class="dropdown-menu">
+                    <li onclick="showAllProducts()">Tất cả sản phẩm</li>
+                    <li class="divider"></li>
+                    <li class="menu-title">Điện thoại</li>
+                    <li onclick="filterByBrand('Apple')">Apple</li>
+                    <li onclick="filterByBrand('Samsung')">Samsung</li>
+                    <li onclick="filterByBrand('Oppo')">Oppo</li>
+                    <li onclick="filterByBrand('Vivo')">Vivo</li>
+                </ul>
+            </button>
+            <!--thêm cho tài khoản-->
+            <div id="auth-area">
+                <!-- Chưa đăng nhập -->
+                <button id="login-btn" onclick="openAuthModal()">
+                    <i class="fas fa-user"></i> Đăng nhập
                 </button>
 
-                <button class="has-dropdown">
-                    <i class="fas fa-bars"></i>
-                    <span>Danh mục</span>
-                    <ul class="dropdown-menu">
-                        <li><a href="apple.html">Apple</a></li>
-                        <li><a href="samsung.html">Samsung</a></li>
-                        <li><a href="oppo.html">Oppo</a></li>
-                        <li><a href="vivo.html">Vivo</a></li>
+                <!-- Đã đăng nhập -->
+                <div id="user-menu" class="user-menu" style="display:none;">
+                    <div class="user-trigger">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+
+                    <ul class="user-dropdown">
+                        <li class="logout" onclick="logout()">Đăng xuất</li>
                     </ul>
-                </button>
-
-                <button>
-                    <i class="fas fa-shopping-cart"></i>
-                    <span>Giỏ hàng</span>
-                    <span class="cart-badge">0</span>
-                </button>
-
+                </div>
             </div>
+            <button onclick="showCart()" class="btn-cart-header">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Giỏ hàng</span>
+                <span id="cart-count" class="cart-badge">0</span>
+            </button>
+            
         </div>
     </div>
 </header>
 
 <div class="container">
+
+    <!-- DANH SÁCH SẢN PHẨM -->
     <section id="user-view" class="section active">
         <h2 class="section-title">
             <span id="currentCategoryTitle">Sản phẩm mới nhất</span>
         </h2>
         <div class="product-grid" id="userProductList"></div>
     </section>
+
     <!-- CHI TIẾT SẢN PHẨM -->
     <section id="detail-view" class="section">
         <div class="back-btn" onclick="goBack()">
@@ -89,8 +109,10 @@
 
                 <h3>Đặc điểm nổi bật:</h3>
 
+                <!-- 🔴 QUAN TRỌNG: đổi từ <p> sang <ul> -->
                 <ul id="detailDesc"></ul>
-            <div class="detail-actions">
+
+                <div class="detail-actions"><!--HÀM ACTIOIN MỚI-->
                 <button class="btn-action buy-now-btn" onclick="addToCart(currentProductDetail, 1, true)">
                     <i class="fas fa-bolt"></i> MUA NGAY
                 </button>
@@ -98,11 +120,81 @@
                     <i class="fas fa-cart-plus"></i> Thêm vào Giỏ hàng
                 </button>
                 </div>
-                
             </div>
         </div>
     </section>
+
+    <!---->
+    <section id="cart-view" class="section">
+    <div class="container cart-wrapper"> 
+        <div class="cart-header-row">
+            <div class="back-btn" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+            <h2 class="cart-title">Giỏ hàng của bạn</h2>
+        </div>
+
+        <div class="cart-control-bar">
+            <label class="checkbox-container select-all-label">
+                <input type="checkbox" id="select-all-checkbox" onchange="toggleSelectAll(this)">
+                <span class="checkmark"></span>
+                <span id="select-all-text" class="label-text">Chọn tất cả</span>
+            </label>
+            <span class="delete-selected" onclick="deleteSelectedItems()">Xóa sản phẩm đã chọn</span>
+        </div>
+
+        <div id="cart-content">
+        </div>
+        <!-- GIỎ HÀNG TRỐNG -->
+        <div id="empty-cart" style="display: none;">
+            <div class="empty-cart-wrapper">
+                <img src="ẢNH GIỎ HÀNG/GH.jpg" alt="Giỏ hàng trống">
+                <p class="empty-title">Giỏ hàng của bạn đang trống.</p>
+                <p class="empty-sub">Hãy chọn thêm sản phẩm để mua sắm nhé</p>
+                <button class="empty-btn" onclick="goBack()">Quay lại trang chủ</button>
+            </div>
+        </div>
+
+        <!-- CỤM NÚT HÀNH ĐỘNG -->
+    <div class="cart-footer">
+        <div class="cart-total-left">
+            Tạm tính: <span id="cart-total-price">0đ</span>
+        </div>
+
+        <button class="buy-now-btn" onclick="alert('Thanh toán')">
+            Mua ngay (0)
+        </button>
+    </div>
 </div>
+
+
+</section>
+<div id="authModal" class="auth-modal">
+    <div class="auth-modal-content">
+        <span class="close-modal" onclick="closeAuthModal()">&times;</span>
+        
+        <div id="login-form">
+            <h2 class="auth-title">ĐĂNG NHẬP</h2>
+            <div class="input-group">
+                <input type="text" id="loginUser" placeholder="Tên đăng nhập">
+                <input type="password" id="loginPass" placeholder="Mật khẩu">
+            </div>
+            <button class="btn-auth" onclick="handleLogin()">ĐĂNG NHẬP</button>
+            <p class="auth-switch">Chưa có tài khoản? <a href="#" onclick="toggleAuth('register')">Đăng ký</a></p>
+        </div>
+      <div id="register-form" style="display:none;">
+            <h2 class="auth-title">ĐĂNG KÝ</h2>
+            <div class="input-group">
+                <input type="text" id="regUser" placeholder="Tên đăng nhập (ít nhất 3 ký tự)">
+                <input type="password" id="regPass" placeholder="Mật khẩu">
+                <input type="password" id="regConfirm" placeholder="Xác nhận mật khẩu">
+            </div>
+            <button class="btn-auth" onclick="handleRegister()">ĐĂNG KÝ</button>
+            <p class="auth-switch">Đã có tài khoản? <a href="#" onclick="toggleAuth('login')">Đăng nhập</a></p>
+        </div>
+    </div>
+</div>
+
 
 <script src="script.js"></script>
 </body>
