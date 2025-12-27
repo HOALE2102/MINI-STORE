@@ -1108,6 +1108,99 @@ function setHeaderCartMode(isCart) {
     }
 }
 
+
+function toggleAuth(type) {
+    document.getElementById('login-form').style.display = type === 'login' ? 'block' : 'none';
+    document.getElementById('register-form').style.display = type === 'register' ? 'block' : 'none';
+}
+function updateAuthUI() {
+    const isLoggedIn = localStorage.getItem("miniStoreLoggedIn") === "true";
+
+    const loginBtn = document.getElementById("login-btn");
+    const userMenu = document.getElementById("user-menu");
+
+    if (!loginBtn || !userMenu) return;
+
+    loginBtn.style.display = isLoggedIn ? "none" : "block";
+    userMenu.style.display = isLoggedIn ? "block" : "none";
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    updateAuthUI();
+});
+// 1. CHỨC NĂNG ĐĂNG KÝ
+function handleRegister() {
+    const user = document.getElementById('regUser').value.trim();
+    const pass = document.getElementById('regPass').value;
+    const confirm = document.getElementById('regConfirm').value;
+
+    // Kiểm tra dữ liệu hợp lệ
+    if (user.length < 3) {
+        alert("Tên đăng nhập phải có ít nhất 3 ký tự!");
+        return;
+    }
+    if (pass === "" || confirm === "") {
+        alert("Vui lòng nhập mật khẩu!");
+        return;
+    }
+    // Tiêu chí: Mật khẩu và xác nhận mật khẩu phải trùng nhau
+    if (pass !== confirm) {
+        alert("Mật khẩu xác nhận không khớp!");
+        return;
+    }
+
+    let users = JSON.parse(localStorage.getItem('minis_users')) || [];
+    
+    // Kiểm tra tài khoản tồn tại
+    if (users.find(u => u.username === user)) {
+        alert("Tài khoản này đã tồn tại!");
+        return;
+    }
+
+    // Đăng ký thành công khi dữ liệu hợp lệ
+    users.push({ username: user, password: pass });
+    localStorage.setItem('minis_users', JSON.stringify(users));
+    alert("Đăng ký thành công!");
+    toggleAuth('login');
+}
+// Khởi chạy khi tải trang
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartBadge();
+});
+// 2. CHỨC NĂNG ĐĂNG NHẬP
+function handleLogin() {
+    const username = document.getElementById("loginUser").value.trim();
+    const password = document.getElementById("loginPass").value.trim();
+
+    if (!username || !password) {
+        alert("Vui lòng nhập đầy đủ thông tin");
+        return;
+    }
+
+    // Đánh dấu đã đăng nhập
+    localStorage.setItem("miniStoreLoggedIn", "true");
+
+    closeAuthModal();
+    updateAuthUI();
+}
+function logout() {
+    // Xóa trạng thái đăng nhập
+    localStorage.removeItem("miniStoreLoggedIn");
+
+    // Cập nhật lại header
+    updateAuthUI();
+}
 function isLoggedIn() {
     return localStorage.getItem("miniStoreLoggedIn") === "true";
 }
+=======
+//
+function openAuthModal() {
+    document.getElementById('authModal').style.display = 'flex';
+}
+
+function closeAuthModal() {
+    document.getElementById('authModal').style.display = 'none';
+}
+
