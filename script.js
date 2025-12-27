@@ -887,3 +887,26 @@ function goBack() {
 document.addEventListener('DOMContentLoaded', () => {
     updateCartBadge();
 });
+// 2. CHỨC NĂNG ĐĂNG NHẬP
+function handleLogin() {
+    const username = document.getElementById("loginUser").value.trim();
+    const password = document.getElementById("loginPass").value.trim();
+
+    if (!username || !password) {
+        alert("Vui lòng nhập đầy đủ thông tin");
+        return;
+    }
+
+    // Đánh dấu đã đăng nhập
+    localStorage.setItem("miniStoreLoggedIn", "true");
+
+    closeAuthModal();
+    updateAuthUI();
+}
+function logout() {
+    // Xóa trạng thái đăng nhập
+    localStorage.removeItem("miniStoreLoggedIn");
+
+    // Cập nhật lại header
+    updateAuthUI();
+}
