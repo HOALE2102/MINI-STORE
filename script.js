@@ -847,6 +847,14 @@ function saveCart() {
 
 // FR3.1: Thêm sản phẩm vào giỏ
 function addToCart(product, quantity = 1, redirectToCart = false) {
+     if (!isLoggedIn()) {
+        showToast("Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!");
+        openAuthModal(); // mở form đăng nhập
+        return;
+    }
+
+    // ✅ ĐÃ ĐĂNG NHẬP → CHẠY BÌNH THƯỜNG
+    if (!product) return;
     if (!product) return;
     
     const existingItem = cart.find(item => item.id === product.id);
@@ -1100,14 +1108,6 @@ function setHeaderCartMode(isCart) {
     }
 }
 
-//
-function openAuthModal() {
-    document.getElementById('authModal').style.display = 'flex';
-}
-
-function closeAuthModal() {
-    document.getElementById('authModal').style.display = 'none';
-}
 
 function toggleAuth(type) {
     document.getElementById('login-form').style.display = type === 'login' ? 'block' : 'none';
@@ -1190,5 +1190,17 @@ function logout() {
 
     // Cập nhật lại header
     updateAuthUI();
+}
+function isLoggedIn() {
+    return localStorage.getItem("miniStoreLoggedIn") === "true";
+}
+=======
+//
+function openAuthModal() {
+    document.getElementById('authModal').style.display = 'flex';
+}
+
+function closeAuthModal() {
+    document.getElementById('authModal').style.display = 'none';
 }
 
