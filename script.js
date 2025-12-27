@@ -1,3 +1,4 @@
+
 // 1. TIỆN ÍCH
     // 1. TIỆN ÍCH
     function formatMoney(amount) {
@@ -667,12 +668,8 @@ const allProducts = Object.keys(PRODUCT_DATA).flatMap(brand =>
     }))
 );
 let filteredProducts = [...allProducts];
-
-//
 let currentProductDetail = null;
-// ==============================================================================================
 // 3. NHẬN DIỆN TRANG
-// ==============================================================================================
 function getPageBrandName() {
     const path = window.location.pathname.toLowerCase();
     if (path.includes("apple.html")) return "Apple";
@@ -687,11 +684,7 @@ function isHomePage() {
     return path.includes("index.html") || path.endsWith("/");
 }
 
-
-
-// ==============================================================================================
 // 5. HIỂN THỊ DANH SÁCH SẢN PHẨM
-// ==============================================================================================
 function renderUserView() {
     const list = document.getElementById("userProductList");
     if (!list) return;
@@ -721,9 +714,7 @@ function renderUserView() {
     });
 }
 
-// ==============================================================================================
 // 6. LỌC THEO HÃNG (DANH MỤC)
-// ==============================================================================================
 function filterByBrand(brandName) {
     filteredProducts = allProducts.filter(p => p.brand === brandName);
     renderUserView();
@@ -742,9 +733,7 @@ function showAllProducts() {
     showSlides();
 }
 
-// ==============================================================================================
 // 7. TÌM KIẾM SẢN PHẨM (PHẦN BẠN CẦN)
-// ==============================================================================================
 function handleSearch(keyword) {
     const searchText = keyword.toLowerCase().trim();
 
@@ -764,9 +753,8 @@ function handleSearch(keyword) {
     if (slider) slider.style.display = "none";
 }
 
-// ==============================================================================================
+
 // 8. CHI TIẾT SẢN PHẨM
-// ==============================================================================================
 function showDetail(p) {
     currentProductDetail = p;
 
@@ -792,7 +780,7 @@ function showDetail(p) {
 }
 
 
-// goback mới đẩy lên lần 4
+// goback mới
 function goBack() {
     // Ẩn tất cả section
     document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
@@ -816,11 +804,7 @@ function goBack() {
     if (slider) slider.style.display = "none";
 }
 
-
-
-// ==============================================================================================
 // 9. KHỞI TẠO TRANG
-// ==============================================================================================
 document.addEventListener("DOMContentLoaded", () => {
     const brandPage = getPageBrandName();
 
@@ -833,29 +817,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 //CHỨC NĂNG GIỎ HÀNG
-// ==============================================================================================
-// 10. LOGIC GIỎ HÀNG (FR3.1 - FR3.4)
-// 
-
 // Khởi tạo giỏ hàng từ bộ nhớ trình duyệt (localStorage)
 let cart = JSON.parse(localStorage.getItem('miniStoreCart')) || [];
-
-// Lưu giỏ hàng và cập nhật giao diện
 function saveCart() {
     localStorage.setItem('miniStoreCart', JSON.stringify(cart));
 }
-
-// FR3.1: Thêm sản phẩm vào giỏ
 function addToCart(product, quantity = 1, redirectToCart = false) {
-     if (!isLoggedIn()) {
+    if (!isLoggedIn()) {
         showToast("Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!");
         openAuthModal(); // mở form đăng nhập
         return;
     }
 
-    // ✅ ĐÃ ĐĂNG NHẬP → CHẠY BÌNH THƯỜNG
     if (!product) return;
-    if (!product) return;
+    
     
     const existingItem = cart.find(item => item.id === product.id);
     if (existingItem) {
@@ -867,16 +842,11 @@ function addToCart(product, quantity = 1, redirectToCart = false) {
     saveCart();
     updateCartBadge(); // ✅ CẬP NHẬT SỐ LƯỢNG NGAY LẬP TỨC
 
-    
-    // THAY THẾ ALERT BẰNG TOAST
     showToast(`Đã thêm vào giỏ hàng thành công!`);
 
     if (redirectToCart) showCart();
 }
 
-
-// FR3.2, 3.3, 3.4: Hiển thị giỏ hàng
-// Cập nhật Badge số lượng trên Header
 function updateCartBadge() {
     const badges = document.querySelectorAll("#cart-count");
     const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -1042,7 +1012,6 @@ function showToast(message) {
     }, 2500);
 }
 
-/* --- THÊM CÁC HÀM NÀY VÀO FILE JS --- */
 
 // Hàm xử lý khi bấm vào "Chọn tất cả"
 function toggleSelectAll(source) {
@@ -1109,26 +1078,21 @@ function setHeaderCartMode(isCart) {
 }
 
 
+// --- QUẢN LÝ TÀI KHOẢN ---
+// đẩy lên lần cuối//
+function openAuthModal() {
+    document.getElementById('authModal').style.display = 'flex';
+}
+
+function closeAuthModal() {
+    document.getElementById('authModal').style.display = 'none';
+}
+
 function toggleAuth(type) {
     document.getElementById('login-form').style.display = type === 'login' ? 'block' : 'none';
     document.getElementById('register-form').style.display = type === 'register' ? 'block' : 'none';
 }
-function updateAuthUI() {
-    const isLoggedIn = localStorage.getItem("miniStoreLoggedIn") === "true";
 
-    const loginBtn = document.getElementById("login-btn");
-    const userMenu = document.getElementById("user-menu");
-
-    if (!loginBtn || !userMenu) return;
-
-    loginBtn.style.display = isLoggedIn ? "none" : "block";
-    userMenu.style.display = isLoggedIn ? "block" : "none";
-}
-
-
-document.addEventListener("DOMContentLoaded", () => {
-    updateAuthUI();
-});
 // 1. CHỨC NĂNG ĐĂNG KÝ
 function handleRegister() {
     const user = document.getElementById('regUser').value.trim();
@@ -1164,10 +1128,7 @@ function handleRegister() {
     alert("Đăng ký thành công!");
     toggleAuth('login');
 }
-// Khởi chạy khi tải trang
-document.addEventListener('DOMContentLoaded', () => {
-    updateCartBadge();
-});
+
 // 2. CHỨC NĂNG ĐĂNG NHẬP
 function handleLogin() {
     const username = document.getElementById("loginUser").value.trim();
@@ -1191,16 +1152,24 @@ function logout() {
     // Cập nhật lại header
     updateAuthUI();
 }
+
 function isLoggedIn() {
     return localStorage.getItem("miniStoreLoggedIn") === "true";
 }
-=======
-//
-function openAuthModal() {
-    document.getElementById('authModal').style.display = 'flex';
+
+function updateAuthUI() {
+    const isLoggedIn = localStorage.getItem("miniStoreLoggedIn") === "true";
+
+    const loginBtn = document.getElementById("login-btn");
+    const userMenu = document.getElementById("user-menu");
+
+    if (!loginBtn || !userMenu) return;
+
+    loginBtn.style.display = isLoggedIn ? "none" : "block";
+    userMenu.style.display = isLoggedIn ? "block" : "none";
 }
 
-function closeAuthModal() {
-    document.getElementById('authModal').style.display = 'none';
-}
 
+document.addEventListener("DOMContentLoaded", () => {
+    updateAuthUI();
+});
