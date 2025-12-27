@@ -148,6 +148,18 @@
         </button>
     </div>
 </div>
+<div id="register-form" style="display:none;">
+            <h2 class="auth-title">ĐĂNG KÝ</h2>
+            <div class="input-group">
+                <input type="text" id="regUser" placeholder="Tên đăng nhập (ít nhất 3 ký tự)">
+                <input type="password" id="regPass" placeholder="Mật khẩu">
+                <input type="password" id="regConfirm" placeholder="Xác nhận mật khẩu">
+            </div>
+            <button class="btn-auth" onclick="handleRegister()">ĐĂNG KÝ</button>
+            <p class="auth-switch">Đã có tài khoản? <a href="#" onclick="toggleAuth('login')">Đăng nhập</a></p>
+        </div>
+    </div>
+</div>
 <script src="script.js"></script>
 </body>
 </html>

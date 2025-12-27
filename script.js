@@ -1099,3 +1099,39 @@ function setHeaderCartMode(isCart) {
         header.classList.remove("cart-mode");
     }
 }
+
+// 1. CHỨC NĂNG ĐĂNG KÝ
+function handleRegister() {
+    const user = document.getElementById('regUser').value.trim();
+    const pass = document.getElementById('regPass').value;
+    const confirm = document.getElementById('regConfirm').value;
+
+    // Kiểm tra dữ liệu hợp lệ
+    if (user.length < 3) {
+        alert("Tên đăng nhập phải có ít nhất 3 ký tự!");
+        return;
+    }
+    if (pass === "" || confirm === "") {
+        alert("Vui lòng nhập mật khẩu!");
+        return;
+    }
+    // Tiêu chí: Mật khẩu và xác nhận mật khẩu phải trùng nhau
+    if (pass !== confirm) {
+        alert("Mật khẩu xác nhận không khớp!");
+        return;
+    }
+
+    let users = JSON.parse(localStorage.getItem('minis_users')) || [];
+    
+    // Kiểm tra tài khoản tồn tại
+    if (users.find(u => u.username === user)) {
+        alert("Tài khoản này đã tồn tại!");
+        return;
+    }
+
+    // Đăng ký thành công khi dữ liệu hợp lệ
+    users.push({ username: user, password: pass });
+    localStorage.setItem('minis_users', JSON.stringify(users));
+    alert("Đăng ký thành công!");
+    toggleAuth('login');
+}
